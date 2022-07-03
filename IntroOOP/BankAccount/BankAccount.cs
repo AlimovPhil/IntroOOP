@@ -1,13 +1,100 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace IntroOOP.BankAccount;
 
-namespace IntroOOP.BankAccount
+public class BankAccount
 {
-    public class BankAccount
-    {
+    private int _ID; // поле "Номер счета"
 
+    private decimal _Balance; // поле "Баланс"
+
+    private AccType _Type; //поле "Тип банковского счета"
+
+    public enum AccType //  перечисление видов аккаунтов
+    { 
+        current,
+        credit,
+        deposit,
+        budget
+    }; 
+    
+    /// <summary>
+    /// Метод возвращает текущее значение поля ID
+    /// </summary>
+    /// <returns>ID</returns>
+    public int GetID()
+    {
+        return _ID;
     }
+
+    /// <summary>
+    /// Метод устанавливает значение поля ID
+    /// </summary>
+    /// <param name="value">Значение</param>
+    public void SetID(int value)
+    {
+        _ID = value;
+    }
+
+    /// <summary>
+    /// Метод возвращает текущее значение поля Balance
+    /// </summary>
+    /// <returns>Balance</returns>
+    public decimal GetBalance()
+    {
+        return _Balance;
+    }
+
+    /// <summary>
+    /// Метод устанавливает значение поля Balance
+    /// </summary>
+    /// <param name="value">Значение</param>
+    public void SetBalance(decimal value)
+    {
+        _Balance = value;
+    }
+    /// <summary>
+    /// Метод возвращает текущее значение поля Type
+    /// </summary>
+    /// <returns>Тип</returns>
+    public AccType GetType()
+    {
+        return _Type;
+    }
+
+    /// <summary>
+    /// Метод устанавливает значение поля Type
+    /// </summary>
+    /// <param name="type">значение</param>
+    public void SetType(AccType type)
+    {
+        _Type = type;
+    }
+
+
+
+    // Свойства, созданые раньше чем было нужно.
+    /*
+    public AccType Type 
+    {
+        get
+        {
+            return _Type;
+        }
+        set
+        {
+            _Type = value;
+        }
+    }
+    public int ID 
+    {
+        get  {  return _ID; }
+        set { _ID = value; }
+    }
+
+    public decimal Balance 
+    {
+        get => _Balance;            // лямбда-синтаксис
+        set => _Balance = value;  
+    }
+    */
+
 }
