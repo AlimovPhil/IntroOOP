@@ -71,6 +71,52 @@ public class BankAccount
         set => _Balance = value;
     }
 
+
+    //public ArgumentException validValue = new("gdgdgdhdh");
+    /// <summary>
+    /// Метод для пополнения счета
+    /// </summary>
+    /// <param name="value">Сумма пополнения</param>
+    /// <exception cref="ArgumentException">Пополнение не может быть отрицательным!</exception>
+    public void AddMoney(decimal value)
+    {
+        if (value < 0)
+        {
+            throw new ArgumentException("Размер пополняемой суммы не может быть отрицательным!");
+        }
+        Console.WriteLine($"\nПополнение счета на сумму: {value}");
+        Balance += value;
+        Console.WriteLine($"Текущий баланс: {Balance}");
+    }
+
+    /// <summary>
+    /// Метод для снятия денег со счета
+    /// </summary>
+    /// <param name="value">Сумма снятия</param>
+    /// <exception cref="ArgumentException">Снятие не может быть отрицательным!</exception>
+    public void WithdrawMoney(decimal value)
+    {
+        if (value < 0)
+        {
+            throw new ArgumentException("Размер снимаемой суммы не может быть отрицательным!");
+        }
+        else
+        {
+            if (Balance - value > 0)
+            {
+                Console.WriteLine($"\nСнято со счета: {value}");
+                Balance -= value;
+                Console.WriteLine($"Текущий баланс счета: {Balance}");
+            }
+            else
+            {
+                Console.WriteLine($"\nДля снятия суммы размером {value} недостаточно средств на счете!");
+                Console.WriteLine($"Текущий баланс счета: {Balance}");
+            }
+        }
+        
+    }
+
     /// <summary>
     /// Метод печатает состояние
     /// </summary>
