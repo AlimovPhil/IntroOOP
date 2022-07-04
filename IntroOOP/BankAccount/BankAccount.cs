@@ -10,12 +10,43 @@ public class BankAccount
 
     public enum AccType //  перечисление видов аккаунтов
     { 
+        nullType,
         current,
         credit,
         deposit,
         budget
     }; 
-    
+
+    public BankAccount()        // Конструктор по умолчанию
+    {
+        _ID = SetID();
+    }
+    public BankAccount(decimal balance) // Конструктор для заполнения поля Баланс
+    {
+        _ID = SetID();
+        _Balance = balance;
+    }
+    public BankAccount(AccType type)    // Конструктор для заполнения поля Тип
+    {
+        _ID = SetID();
+        _Type = type;
+    }
+    public BankAccount(decimal balance, AccType type) // Конструктор для заполнения полей Баланс и Тип
+    {
+        _ID = SetID();
+        _Balance = balance;
+        _Type = type;
+    }
+
+    /// <summary>
+    /// Метод печатает состояние
+    /// </summary>
+    public void GetInfo() 
+    {
+        Console.WriteLine("Номер счета: {0}\nБаланс: {1}\nТип: {2}", GetID(), GetBalance(), GetType());
+    }
+
+
     /// <summary>
     /// Метод возвращает текущее значение поля ID
     /// </summary>
@@ -47,14 +78,6 @@ public class BankAccount
     }
 
     /// <summary>
-    /// Метод устанавливает значение поля Balance
-    /// </summary>
-    /// <param name="value">Значение</param>
-    public void SetBalance(decimal value)
-    {
-        _Balance = value;
-    }
-    /// <summary>
     /// Метод возвращает текущее значение поля Type
     /// </summary>
     /// <returns>Тип</returns>
@@ -62,17 +85,6 @@ public class BankAccount
     {
         return _Type;
     }
-
-    /// <summary>
-    /// Метод устанавливает значение поля Type
-    /// </summary>
-    /// <param name="type">значение</param>
-    public void SetType(AccType type)
-    {
-        _Type = type;
-    }
-
-
 
     // Свойства, созданые раньше чем было нужно.
     /*

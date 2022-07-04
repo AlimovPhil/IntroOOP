@@ -1,35 +1,24 @@
 ﻿using IntroOOP.BankAccount;
 
-//BankAccount acc1 = new BankAccount(); (старый синтаксис) 
-BankAccount acc1 = new(); // Объект 1
-BankAccount acc2 = new(); // Объект 2
 
-Console.WriteLine("Аккаунт №1: "); 
-
-acc1.SetBalance(100000);
-acc1.SetType(BankAccount.AccType.credit);
-
-acc1.SetID();                                       // Тестирование работы метода создания уникального номера счета
-Console.WriteLine($"Номер счета: {acc1.GetID()}"); //1001
-acc1.SetID();
-Console.WriteLine($"Номер счета: {acc1.GetID()}"); //1002
-
-Console.WriteLine("Баланс: {0} $", acc1.GetBalance());
-Console.WriteLine("Тип счета: {0} ", acc1.GetType());
+Console.WriteLine("Аккаунт №1: ");
+BankAccount acc1 = new();
+acc1.GetInfo();
 
 Console.WriteLine(" ");
 
 Console.WriteLine("Аккаунт №2: ");
+BankAccount acc2 = new(BankAccount.AccType.current);
+acc2.GetInfo();
+Console.WriteLine(" ");
 
-acc2.SetBalance(999);
-acc2.SetType(BankAccount.AccType.deposit);
+Console.WriteLine("Аккаунт №3: ");
+BankAccount acc3 = new(9999999);
+acc3.GetInfo();
+Console.WriteLine(" ");
 
-acc2.SetID();                                       // Дополнительный тест
-Console.WriteLine($"Номер счета: {acc2.GetID()}");  //1003
-acc2.SetID();
-Console.WriteLine($"Номер счета: {acc2.GetID()}"); //1004
-
-Console.WriteLine("Баланс: {0} $", acc2.GetBalance());
-Console.WriteLine("Тип счета: {0} ", acc2.GetType());
+Console.WriteLine("Аккаунт №4: ");
+BankAccount acc4 = new(322, BankAccount.AccType.credit);
+acc4.GetInfo();
 
 Console.ReadLine();
