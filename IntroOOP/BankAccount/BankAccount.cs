@@ -25,13 +25,16 @@ public class BankAccount
         return _ID;
     }
 
+    static int defaultID = 1000; // Переменная, задающая начальное значение ID
+
     /// <summary>
-    /// Метод устанавливает значение поля ID
+    /// Метод устанавливает уникальное значение поля ID
     /// </summary>
-    /// <param name="value">Значение</param>
-    public void SetID(int value)
+    public int SetID()
     {
-        _ID = value;
+        defaultID++;
+        _ID = defaultID;
+        return defaultID;
     }
 
     /// <summary>
