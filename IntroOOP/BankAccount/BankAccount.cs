@@ -7,6 +7,7 @@ public class BankAccount
     private decimal _Balance; // поле "Баланс"
 
     private AccType _Type; //поле "Тип банковского счета"
+    static int defaultID = 1000; // Переменная, задающая начальное значение ID
 
     public enum AccType //  перечисление видов аккаунтов
     { 
@@ -17,10 +18,8 @@ public class BankAccount
         budget
     }; 
 
-    public BankAccount()        // Конструктор по умолчанию
-    {
-        _ID = SetID();
-    }
+    public BankAccount() => _ID = SetID(); // Конструктор по умолчанию
+    
     public BankAccount(decimal balance) // Конструктор для заполнения поля Баланс
     {
         _ID = SetID();
@@ -39,26 +38,6 @@ public class BankAccount
     }
 
     /// <summary>
-    /// Метод печатает состояние
-    /// </summary>
-    public void GetInfo() 
-    {
-        Console.WriteLine("Номер счета: {0}\nБаланс: {1}\nТип: {2}", GetID(), GetBalance(), GetType());
-    }
-
-
-    /// <summary>
-    /// Метод возвращает текущее значение поля ID
-    /// </summary>
-    /// <returns>ID</returns>
-    public int GetID()
-    {
-        return _ID;
-    }
-
-    static int defaultID = 1000; // Переменная, задающая начальное значение ID
-
-    /// <summary>
     /// Метод устанавливает уникальное значение поля ID
     /// </summary>
     public int SetID()
@@ -68,27 +47,8 @@ public class BankAccount
         return defaultID;
     }
 
-    /// <summary>
-    /// Метод возвращает текущее значение поля Balance
-    /// </summary>
-    /// <returns>Balance</returns>
-    public decimal GetBalance()
-    {
-        return _Balance;
-    }
-
-    /// <summary>
-    /// Метод возвращает текущее значение поля Type
-    /// </summary>
-    /// <returns>Тип</returns>
-    public AccType GetType()
-    {
-        return _Type;
-    }
-
-    // Свойства, созданые раньше чем было нужно.
-    /*
-    public AccType Type 
+    // Наконец-то! Настало время свойств!
+    public AccType Type // Развернутый вариант написания свойств
     {
         get
         {
@@ -99,17 +59,27 @@ public class BankAccount
             _Type = value;
         }
     }
-    public int ID 
+    public int ID // Сокращенное написание свойства
     {
-        get  {  return _ID; }
-        set { _ID = value; }
+        get { return _ID; }
+        private set { _ID = SetID(); } // Приватное свойство, чтобы номер счета нельзя было поменять
     }
 
-    public decimal Balance 
+    public decimal Balance  // you're my butterfly, SUGAR baby!
     {
         get => _Balance;            // лямбда-синтаксис
-        set => _Balance = value;  
+        set => _Balance = value;
     }
-    */
+
+    /// <summary>
+    /// Метод печатает состояние
+    /// </summary>
+    public void GetInfo() 
+    {
+        Console.WriteLine("Номер счета: {0}\nБаланс: {1}\nТип: {2}", ID, Balance, Type);
+    }
+
+    
+
 
 }

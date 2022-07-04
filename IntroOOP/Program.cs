@@ -3,6 +3,8 @@
 
 Console.WriteLine("Аккаунт №1: ");
 BankAccount acc1 = new();
+acc1.Balance = 3131333;
+acc1.Type = BankAccount.AccType.deposit;
 acc1.GetInfo();
 
 Console.WriteLine(" ");
