@@ -7,6 +7,7 @@ public class BankAccount
     private decimal _Balance; // поле "Баланс"
 
     private AccType _Type; //поле "Тип банковского счета"
+    
     static int defaultID = 1000; // Переменная, задающая начальное значение ID
 
     public enum AccType //  перечисление видов аккаунтов
@@ -71,8 +72,6 @@ public class BankAccount
         set => _Balance = value;
     }
 
-
-    //public ArgumentException validValue = new("gdgdgdhdh");
     /// <summary>
     /// Метод для пополнения счета
     /// </summary>
@@ -120,12 +119,6 @@ public class BankAccount
     /// <summary>
     /// Метод печатает состояние
     /// </summary>
-    public void GetInfo() 
-    {
-        Console.WriteLine("Номер счета: {0}\nБаланс: {1}\nТип: {2}", ID, Balance, Type);
-    }
-
-    
-
+    public void GetInfo() {Console.WriteLine("Номер счета: {0}\nБаланс: {1}\nТип: {2}", ID, Balance, Type);}
 
 }
