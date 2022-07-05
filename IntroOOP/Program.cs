@@ -1,19 +1,18 @@
 ﻿using IntroOOP;
 using IntroOOP.BankAccount;
+using IntroOOP.FunWithStrings;
 
 Header.HwHeader("ООП",3, "Алимов Филипп");
 
-BankAccount acc1 = new(1500, BankAccount.AccType.credit);
-BankAccount acc2 = new(500, BankAccount.AccType.deposit);
+string test_str = "short string";
+string test_str2 = "longer and bigger string";
+string test_str3 = "very super, very duper, very puper long string";
 
-acc1.GetInfo();
-acc2.GetInfo();
+Console.WriteLine($"Simple reverse => {ReverseString.SimpleReverse(test_str)}");
 
-acc1.TransferMoney(acc2, 300);
-acc2.TransferMoney(acc1, 2000);
+Console.WriteLine($"Bad reverse => {ReverseString.BadReverse(test_str2)}");
 
-acc1.GetInfo();
-acc2.GetInfo();
+Console.WriteLine($"Good reverse => {ReverseString.GoodReverse(test_str3)}");
 
 
 Console.ReadLine();
