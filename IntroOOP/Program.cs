@@ -1,18 +1,24 @@
-﻿using IntroOOP;
+﻿using System.Text;
+using IntroOOP;
 using IntroOOP.BankAccount;
 using IntroOOP.FunWithStrings;
 
-Header.HwHeader("ООП",3, "Алимов Филипп");
+Header.HwHeader("ООП", 3, "Алимов Филипп");
 
-string test_str = "short string";
-string test_str2 = "longer and bigger string";
-string test_str3 = "very super, very duper, very puper long string";
+//    3.Работа со строками. Дан текстовый файл, содержащий ФИО и e-mail адрес.
+//    Разделителем между ФИО и адресом электронной почты является символ &
+//    Сформировать новый файл, содержащий список адресов электронной почты.
+//    Предусмотреть метод, выделяющий из строки адрес почты.
+//    Методу в качестве параметра передается символьная строка s, e-mail возвращается в той же строке s: public void SearchMail(ref string s).
 
-Console.WriteLine($"Simple reverse => {ReverseString.SimpleReverse(test_str)}");
+string path = @"D:\Phil_docs\GB\HomeWork\IntroOOP\IntroOOP";
+var file = "DataFile.txt";
 
-Console.WriteLine($"Bad reverse => {ReverseString.BadReverse(test_str2)}");
+string data = DataExtraction.ReadFile(path, file);
+Console.WriteLine(data);
 
-Console.WriteLine($"Good reverse => {ReverseString.GoodReverse(test_str3)}");
+DataExtraction.SearchMail(ref data);
 
 
+Console.WriteLine("Программа выполнена.");
 Console.ReadLine();
