@@ -5,20 +5,20 @@ using IntroOOP.FunWithStrings;
 
 Header.HwHeader("ООП", 3, "Алимов Филипп");
 
-//    3.Работа со строками. Дан текстовый файл, содержащий ФИО и e-mail адрес.
-//    Разделителем между ФИО и адресом электронной почты является символ &
-//    Сформировать новый файл, содержащий список адресов электронной почты.
-//    Предусмотреть метод, выделяющий из строки адрес почты.
-//    Методу в качестве параметра передается символьная строка s, e-mail возвращается в той же строке s: public void SearchMail(ref string s).
 
-string path = @"D:\Phil_docs\GB\HomeWork\IntroOOP\IntroOOP";
-var file = "DataFile.txt";
+string path = @"D:\Phil_docs\GB\HomeWork\IntroOOP\IntroOOP\DataFile.txt"; 
+string emailsfile = @"D:\Phil_docs\GB\HomeWork\IntroOOP\IntroOOP\Mails.txt";
 
-string data = DataExtraction.ReadFile(path, file);
-Console.WriteLine(data);
-
-DataExtraction.SearchMail(ref data);
-
+using (StreamReader reader = new(path))
+using (StreamWriter writer = new(emailsfile))
+{
+    string? line;
+    while ((line = reader.ReadLine()) != null)
+    {
+        DataExtraction.SearchMail(ref line);
+        writer.WriteLine(line);
+    }
+}
 
 Console.WriteLine("Программа выполнена.");
 Console.ReadLine();
