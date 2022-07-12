@@ -8,6 +8,7 @@ public class BankAccount
 
     private AccType _Type; //поле "Тип банковского счета"
 
+
     private static int defaultID = 1000; // Переменная, задающая начальное значение ID
 
     public enum AccType //  перечисление видов аккаунтов
@@ -63,6 +64,7 @@ public class BankAccount
     public int ID // Сокращенное написание свойства
     {
         get { return _ID; }
+
         private set { _ID = value; } // Приватное свойство, чтобы номер счета нельзя было поменять
     }
 
@@ -72,8 +74,6 @@ public class BankAccount
         set => _Balance = value;
     }
 
-
-    //public ArgumentException validValue = new("gdgdgdhdh");
     /// <summary>
     /// Метод для пополнения счета
     /// </summary>
@@ -114,10 +114,39 @@ public class BankAccount
 
 
     /// <summary>
+    /// Перевод денег с одного счета на другой
+    /// </summary>
+    /// <param name="source">Счет-донор</param>
+    /// <param name="amount">Сумма перевода</param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentException">Проверка</exception>
+    public bool TransferMoney(BankAccount source, decimal amount)
+    {
+        if (amount < 0)
+        {
+            throw new ArgumentException("Размер перевода не может быть отрицательным!");
+        }
+        else
+        {
+            if (source.Balance < amount)
+            {
+                Console.WriteLine($"Перевод на сумму {amount} RUB не выполнен!\nНа счете №{source.ID} недостаточно средств!\n");
+                return default;
+            }
+            else
+            {
+                source.Balance -= amount;
+                Balance += amount;
+                Console.WriteLine($"Перевод на сумму {amount} RUB выполнен!\nТекущий баланс счета №{ID}: {Balance:n} RUB\n");
+                return true;
+            }
+
+        }
+
+    }
+
+    /// <summary>
     /// Метод печатает состояние
     /// </summary>
-    public void GetInfo()
-    {
-        Console.WriteLine("Номер счета: {0}\nБаланс: {1}\nТип: {2}\n", ID, Balance, Type);
-    }
+    public void GetInfo() { Console.WriteLine("Номер счета: {0}\nБаланс: {1:N} RUB\nТип: {2}\n", ID, Balance, Type); }
 }

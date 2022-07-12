@@ -1,30 +1,23 @@
-﻿using IntroOOP.BankAccount;
+﻿using System.Text;
+using IntroOOP;
+using IntroOOP.BankAccount;
+using IntroOOP.FunWithStrings;
 
+Header.HwHeader("ООП", 3, "Алимов Филипп");
 
-Console.WriteLine("Аккаунт №4: ");
+string path = @"D:\Phil_docs\GB\HomeWork\IntroOOP\IntroOOP\DataFile.txt"; 
+string emailsfile = @"D:\Phil_docs\GB\HomeWork\IntroOOP\IntroOOP\Mails.txt";
 
-BankAccount acc4 = new(500, BankAccount.AccType.Credit);
+using (StreamReader reader = new(path))
+using (StreamWriter writer = new(emailsfile))
+{
+    string? line;
+    while ((line = reader.ReadLine()) != null)
+    {
+        DataExtraction.SearchMail(ref line);
+        writer.WriteLine(line);
+    }
+}
 
-acc4.GetInfo();
-
-bool result = acc4.WithdrawMoney(500);
-
-if (result != true)
-     Console.WriteLine("Операция не выполнена! Недостаточно средств!\n");
-else Console.WriteLine("Снятие средств выполнено!\n");
-
-acc4.GetInfo();
-
-result = acc4.WithdrawMoney(1000);
-if (result != true)
-    Console.WriteLine("Операция не выполнена! Недостаточно средств!\n");
-else Console.WriteLine("Снятие средств выполнено!\n");
-
-acc4.GetInfo();
-
-acc4.AddMoney(9500);
-
-acc4.GetInfo();
-
-
+Console.WriteLine("Программа выполнена.");
 Console.ReadLine();
