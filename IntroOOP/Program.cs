@@ -5,7 +5,6 @@ using IntroOOP.FunWithStrings;
 
 Header.HwHeader("ООП", 3, "Алимов Филипп");
 
-
 string path = @"D:\Phil_docs\GB\HomeWork\IntroOOP\IntroOOP\DataFile.txt"; 
 string emailsfile = @"D:\Phil_docs\GB\HomeWork\IntroOOP\IntroOOP\Mails.txt";
 

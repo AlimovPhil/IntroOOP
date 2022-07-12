@@ -63,7 +63,8 @@ public class BankAccount
     public int ID // Сокращенное написание свойства
     {
         get { return _ID; }
-        set { _ID = value; } // Приватное свойство, чтобы номер счета нельзя было поменять
+
+        private set { _ID = value; } // Приватное свойство, чтобы номер счета нельзя было поменять
     }
 
     public decimal Balance  // you're my butterfly, SUGAR baby!
@@ -80,13 +81,9 @@ public class BankAccount
     public void AddMoney(decimal value)
     {
         if (value < 0)
-        {
             throw new ArgumentException("Размер пополняемой суммы не может быть отрицательным!");
-        }
         else
-        {
             Balance += value;
-        }
     }
 
     /// <summary>
@@ -94,23 +91,26 @@ public class BankAccount
     /// </summary>
     /// <param name="value">Сумма снятия</param>
     /// <exception cref="ArgumentException">Снятие не может быть отрицательным!</exception>
-    public void WithdrawMoney(decimal value)
+    public bool WithdrawMoney(decimal value)
     {
         if (value < 0)
         {
+            return false;
             throw new ArgumentException("Размер снимаемой суммы не может быть отрицательным!");
         }
         else
         {
-            if (Balance - value > 0) { Balance -= value; }
-            else
+            if (Balance - value >= 0)
             {
-                Console.WriteLine($"\nДля снятия суммы размером {value} недостаточно средств на счете!");
-                Console.WriteLine($"Текущий баланс счета: {Balance}");
+                Balance -= value;
+                return true;
             }
+            else
+                return false;
         }
-
     }
+
+
 
     /// <summary>
     /// Перевод денег с одного счета на другой
@@ -146,5 +146,4 @@ public class BankAccount
     /// Метод печатает состояние
     /// </summary>
     public void GetInfo() { Console.WriteLine("Номер счета: {0}\nБаланс: {1:N} RUB\nТип: {2}\n", ID, Balance, Type); }
-
 }
