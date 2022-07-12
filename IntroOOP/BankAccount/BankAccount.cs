@@ -8,6 +8,7 @@ public class BankAccount
 
     private AccType _Type; //поле "Тип банковского счета"
 
+    private static int defaultID = 1000; // Переменная, задающая начальное значение ID
 
     private static int defaultID = 1000; // Переменная, задающая начальное значение ID
 
@@ -130,14 +131,12 @@ public class BankAccount
         {
             if (source.Balance < amount)
             {
-                Console.WriteLine($"Перевод на сумму {amount} RUB не выполнен!\nНа счете №{source.ID} недостаточно средств!\n");
-                return default;
+                return false;
             }
             else
             {
                 source.Balance -= amount;
                 Balance += amount;
-                Console.WriteLine($"Перевод на сумму {amount} RUB выполнен!\nТекущий баланс счета №{ID}: {Balance:n} RUB\n");
                 return true;
             }
 

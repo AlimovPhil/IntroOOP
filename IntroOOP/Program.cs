@@ -11,8 +11,9 @@ string emailsfile = @"D:\Phil_docs\GB\HomeWork\IntroOOP\IntroOOP\Mails.txt";
 using (StreamReader reader = new(path))
 using (StreamWriter writer = new(emailsfile))
 {
-    string? line;
-    while ((line = reader.ReadLine()) != null)
+    //string? line;
+    //while ((line = reader.ReadLine()) != null)
+    while (reader.ReadLine() is { } line)
     {
         DataExtraction.SearchMail(ref line);
         writer.WriteLine(line);
