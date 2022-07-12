@@ -4,37 +4,58 @@ public class Building
 {
     #region Fields
     private int _BuildingNumber;      // Номер здания
-    private int _BuildingHeight;   // Высота здания
+    private double _BuildingHeight;      // Высота здания
     private int _FloorQty;            // Количество этажей
     private int _ApartmentQty;        // Количество квартир
     private int _EntranceQty;         // Количество подъездов
+    private static int lastBuildingNumber; // Переменная для генерации номера здания
     #endregion
-    private static int lastBuildingNumber = 0; // Переменная для генерации номера здания
+    
 
     public int BuildingNumber
     {
         get => _BuildingNumber;
         private set => _BuildingNumber = value;
     }
-    public int BuildingHeight
+    public double BuildingHeight
     {
         get => _BuildingHeight;
-        set => _BuildingHeight = value;
+        set
+        {
+            if (value <= 0)
+                throw new InvalidDataException("Высота здания не может быть меньше либо равна 0!");
+            _BuildingHeight = value;
+        }
     }
     public int FloorQty
     {
         get => _FloorQty;
-        set => _FloorQty = value;
+        set
+        {
+            if (value < 1)
+                throw new InvalidDataException("Кол-во этажей в здании не может быть меньше 1!");
+            _FloorQty = value;
+        }
     }
     public int EntranceQty
     {
         get => _EntranceQty;
-        set => _EntranceQty = value;
+        set
+        {
+            if (value < 1)
+                throw new InvalidDataException("Количество подъездов не может быть меньше 1!");
+            _EntranceQty = value;
+        }
     }
     public int ApartmentQty
     {
         get => _ApartmentQty;
-        set => _ApartmentQty = value;
+        set
+        {
+            if (value < 1)
+                throw new InvalidDataException("Количество квартир не может быть меньше 1!");
+            _ApartmentQty = value;
+        }
     }
     private int SetBuildingNumber()
     {
@@ -45,7 +66,7 @@ public class Building
 
     public Building() => _BuildingNumber = SetBuildingNumber(); // Конструктор по-умолчанию
 
-    public Building(int bldg_height, int floorsQty, int aptsQty, int entranceQty)
+    public Building(double bldg_height, int floorsQty, int aptsQty, int entranceQty)
     {
         BuildingNumber = SetBuildingNumber();
         BuildingHeight = bldg_height;
@@ -54,17 +75,20 @@ public class Building
         EntranceQty = entranceQty;
     }
 
-    public void FloorsHeight(out int floor_height)
+    public double FloorsHeight()
     {
-        floor_height = BuildingHeight / FloorQty;
+        double fl_height = BuildingHeight / FloorQty;
+        return fl_height;
     }
 
-    public void AppsPerEntrance(out int apps_per_entrns )
+    public int AppsPerEntrance()
     {
-        apps_per_entrns = ApartmentQty / EntranceQty;
+        int value = ApartmentQty / EntranceQty;
+        return value;
     }
-    public void AppsPerFloor(out int apps_per_floor )
+    public int AppsPerFloor()
     {
-        apps_per_floor = (ApartmentQty / EntranceQty) / FloorQty;
+        int value = AppsPerEntrance() / FloorQty;
+        return value;
     }
 }
