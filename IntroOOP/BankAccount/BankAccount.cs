@@ -8,15 +8,16 @@ public class BankAccount
 
     private AccType _Type; //поле "Тип банковского счета"
 
-    static int defaultID = 1000; // Переменная, задающая начальное значение ID
+
+    private static int defaultID = 1000; // Переменная, задающая начальное значение ID
 
     public enum AccType //  перечисление видов аккаунтов
     {
-        nullType,
-        current,
-        credit,
-        deposit,
-        budget
+        NullType,
+        Current,
+        Credit,
+        Deposit,
+        Budget
     };
 
     public BankAccount() => _ID = SetID(); // Конструктор по умолчанию
@@ -63,7 +64,8 @@ public class BankAccount
     public int ID // Сокращенное написание свойства
     {
         get { return _ID; }
-        set { _ID = SetID(); } // Приватное свойство, чтобы номер счета нельзя было поменять
+
+        private set { _ID = value; } // Приватное свойство, чтобы номер счета нельзя было поменять
     }
 
     public decimal Balance  // you're my butterfly, SUGAR baby!
@@ -80,12 +82,9 @@ public class BankAccount
     public void AddMoney(decimal value)
     {
         if (value < 0)
-        {
             throw new ArgumentException("Размер пополняемой суммы не может быть отрицательным!");
-        }
-        Console.WriteLine($"\nПополнение счета на сумму: {value}");
-        Balance += value;
-        Console.WriteLine($"Текущий баланс: {Balance}");
+        else
+            Balance += value;
     }
 
     /// <summary>
@@ -93,28 +92,26 @@ public class BankAccount
     /// </summary>
     /// <param name="value">Сумма снятия</param>
     /// <exception cref="ArgumentException">Снятие не может быть отрицательным!</exception>
-    public void WithdrawMoney(decimal value)
+    public bool WithdrawMoney(decimal value)
     {
         if (value < 0)
         {
+            return false;
             throw new ArgumentException("Размер снимаемой суммы не может быть отрицательным!");
         }
         else
         {
-            if (Balance - value > 0)
+            if (Balance - value >= 0)
             {
-                Console.WriteLine($"\nСнято со счета: {value}");
                 Balance -= value;
-                Console.WriteLine($"Текущий баланс счета: {Balance}");
+                return true;
             }
             else
-            {
-                Console.WriteLine($"\nДля снятия суммы размером {value} недостаточно средств на счете!");
-                Console.WriteLine($"Текущий баланс счета: {Balance}");
-            }
+                return false;
         }
-
     }
+
+
 
     /// <summary>
     /// Перевод денег с одного счета на другой
@@ -152,5 +149,4 @@ public class BankAccount
     /// Метод печатает состояние
     /// </summary>
     public void GetInfo() { Console.WriteLine("Номер счета: {0}\nБаланс: {1:N} RUB\nТип: {2}\n", ID, Balance, Type); }
-
 }
