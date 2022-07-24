@@ -1,7 +1,6 @@
 ﻿namespace IntroOOP;
 
 //Определить операторы преобразования типов между типом дробь, float, int.
-//Определить операторы %.
 public class RatNum
 {
     private int _Numerator;     // Числитель
@@ -60,10 +59,29 @@ public class RatNum
         }
         return a;
     }
-    // Возвращает Наименьшее общее кратное
+    // Возвращает Наименьшее общее кратное (наименьший общий знаменатель)
     private static int getCommonMultiple(int a, int b)
     {
         return a * b / getCommonDivisor(a, b);
+    }
+    // Приведение к общему знаменателю
+    private static void CommonDenominator(RatNum a, RatNum b, out RatNum x, out RatNum y)
+    {
+       
+        // Наименьшее общее кратное знаменателей
+        int leastCommonMultiple = getCommonMultiple(a.Denominator, b.Denominator);
+        // Дополнительный множитель к первой дроби
+        int additionalMultiplierFirst = leastCommonMultiple / a.Denominator;
+        // Дополнительный множитель ко второй дроби
+        int additionalMultiplierSecond = leastCommonMultiple / b.Denominator;
+        // Умножение числителей дробей А, В на доп множ
+        int tempNumeratorA = a.Numerator * additionalMultiplierFirst;
+        int tempNumeratorB = b.Numerator * additionalMultiplierSecond;
+        // Вычисление нового знаменателя для итоговой дроби
+        int CommonDenominator = a.Denominator * additionalMultiplierFirst; 
+        x = new RatNum(a.Numerator * additionalMultiplierFirst, a.Denominator * additionalMultiplierFirst);
+        y = new RatNum(b.Numerator * additionalMultiplierSecond, b.Denominator * additionalMultiplierSecond);
+        
     }
     // Возвращает сокращенную дробь
     public RatNum Reduce()
@@ -301,6 +319,17 @@ public class RatNum
     public static bool operator <=(int a, RatNum b)
     {
         return new RatNum(a) <= b;
+    }
+    public static RatNum operator %(RatNum a, RatNum b)
+    {
+        RatNum x;
+        RatNum y;
+        CommonDenominator(a, b, out x, out y);
+        while (x.Numerator >= y.Numerator)
+        {
+            x.Numerator -= y.Numerator;
+        }
+        return new RatNum(x.Numerator, x.Denominator);
     }
     public override string ToString()
     {

@@ -2,13 +2,8 @@
 
 Header.HwHeader("ООП", 5, "Алимов Филипп");
 
-//Создать класс рациональных чисел. В классе два поля – числитель и
-//знаменатель. Предусмотреть конструктор. Определить операторы ==, != (метод
-//Equals()), <, >, <=, >=, +, – , ++, --.Переопределить метод ToString() для вывода
-//дроби. Определить операторы преобразования типов между типом дробь, float, int.
-//Определить операторы *, /, %.
 
-RatNum rat1 = new(4, 6);
+RatNum rat1 = new(9, 6);
 RatNum rat6 = new RatNum(5, 6);
 
 //var rat2 = new RatNum(4, 9);
@@ -21,7 +16,6 @@ RatNum rat6 = new RatNum(5, 6);
 //Console.WriteLine(rat1 - rat3);
 //Console.WriteLine(rat1 * rat2);
 //Console.WriteLine(++rat1);
-Console.WriteLine(rat1 == rat6);
-Console.WriteLine(rat1 != rat6);
+Console.WriteLine(rat1 % rat6);
 
 Console.ReadLine();
