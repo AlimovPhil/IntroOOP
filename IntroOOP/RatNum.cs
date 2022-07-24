@@ -1,10 +1,6 @@
 ﻿namespace IntroOOP;
 
-
-//Создать класс рациональных чисел. В классе два поля – числитель и
-//знаменатель. Предусмотреть конструктор. Определить операторы ==, != (метод
-//Equals()), <, >, <=, >=.Переопределить метод ToString() для вывода
-//дроби. Определить операторы преобразования типов между типом дробь, float, int.
+//Определить операторы преобразования типов между типом дробь, float, int.
 //Определить операторы %.
 public class RatNum
 {
@@ -125,6 +121,22 @@ public class RatNum
         RatNum b = x.Reduce();
         return a.Numerator == b.Numerator && a.Denominator == b.Denominator;
     }
+    // Метод сравнения двух дробей
+    // 0, если дроби равны
+    // 1, если А дробь больше В
+    // -1, если А меньше В
+    private int CompareTo(RatNum x)
+    {
+        if (this.Equals(x))
+        {
+            return 0;
+        }
+        RatNum a = this.Reduce();
+        RatNum b = x.Reduce();
+        if (a.Numerator / a.Denominator > b.Numerator / b.Denominator)
+            return 1;
+        else return -1;
+    }
     // Перегрузка оператора "+". Сложение двух дробей.
     public static RatNum operator +(RatNum a, RatNum b)
     {
@@ -229,6 +241,66 @@ public class RatNum
     public static bool operator !=(int a, RatNum b)
     {
         return new RatNum(a) != b;
+    }
+    // Перегрузка оператора ">" для дробей.
+    public static bool operator >(RatNum a, RatNum b)
+    {
+        return a.CompareTo(b) > 0;
+    }
+    // Перегрузка оператора ">" для дроби и числа.
+    public static bool operator >(RatNum a, int b)
+    {
+        return a > new RatNum(b);
+    }
+    // Перегрузка оператора ">" для числа и дроби.
+    public static bool operator >(int a, RatNum b)
+    {
+        return new RatNum(a) > b;
+    }
+    // Перегрузка оператора "<" для дробей.
+    public static bool operator <(RatNum a, RatNum b)
+    {
+        return a.CompareTo(b) < 0;
+    }
+    // Перегрузка оператора "<" для дроби и числа.
+    public static bool operator <(RatNum a, int b)
+    {
+        return a < new RatNum(b);
+    }
+    // Перегрузка оператора "<" для числа и дроби.
+    public static bool operator <(int a, RatNum b)
+    {
+        return new RatNum(a) < b;
+    }
+    // Перегрузка оператора ">=" для двух дробей.
+    public static bool operator >=(RatNum a, RatNum b)
+    {
+        return a.CompareTo(b) >= 0;
+    }
+    // Перегрузка оператора ">=" для дроби и числа.
+    public static bool operator >=(RatNum a, int b)
+    {
+        return a >= new RatNum(b);
+    }
+    // Перегрузка оператора ">=" для числа и дроби.
+    public static bool operator >=(int a, RatNum b)
+    {
+        return new RatNum(a) >= b;
+    }
+    // Перегрузка оператора "<=" для двух дробей.
+    public static bool operator <=(RatNum a, RatNum b)
+    {
+        return a.CompareTo(b) <= 0;
+    }
+    // Перегрузка оператора "<=" для дроби и числа.
+    public static bool operator <=(RatNum a, int b)
+    {
+        return a <= new RatNum(b);
+    }
+    // Перегрузка оператора "<=" для числа и дроби
+    public static bool operator <=(int a, RatNum b)
+    {
+        return new RatNum(a) <= b;
     }
     public override string ToString()
     {
