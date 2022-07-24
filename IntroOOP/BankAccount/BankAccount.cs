@@ -8,10 +8,6 @@ public class BankAccount
 
     private AccType _Type; //поле "Тип банковского счета"
 
-=========
->>>>>>>>> Temporary merge branch 2
-=========
->>>>>>>>> Temporary merge branch 2
     private static int defaultID = 1000; // Переменная, задающая начальное значение ID
 
     public enum AccType //  перечисление видов аккаунтов

@@ -1,4 +1,4 @@
-﻿namespace IntroOOP;
+﻿namespace IntroOOP.BuildingClass;
 
 
 //2. * Для реализованного класса создать новый класс Creator, который будет являться фабрикой объектов класса здания.
@@ -10,7 +10,7 @@
 public class Creator
 {
     // Имя строителя
-    public string Name {get; set;}
+    public string Name { get; set; }
 
     // Создать новый экземпляр строителя.
     public Creator(string name)
@@ -27,7 +27,7 @@ public class Creator
     // Построить новый дом
     public Building CreateBuild(double height, int floors, int apps, int entrances)
     {
-        Building building = new ();
+        Building building = new();
         building.BuildingHeight = height;
         building.FloorQty = floors;
         building.ApartmentQty = apps;
