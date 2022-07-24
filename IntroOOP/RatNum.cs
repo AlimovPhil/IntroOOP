@@ -69,7 +69,15 @@ public class RatNum
     {
         return a * b / getCommonDivisor(a, b);
     }
-    
+    // Возвращает сокращенную дробь
+    public RatNum Reduce()
+    {
+        RatNum result = this;
+        int greatestCommonDivisor = getCommonDivisor(this.Numerator, this.Denominator);
+        result.Numerator /= greatestCommonDivisor;
+        result.Denominator /= greatestCommonDivisor;
+        return result;
+    }
     // Операция сложения дробей
     private static RatNum performOperationAddition(RatNum a, RatNum b)
     {
@@ -109,6 +117,13 @@ public class RatNum
     private RatNum ReverseNum()
     {
         return new RatNum(this.Denominator, this.Numerator);
+    }
+    // Метод сравнения.
+    public bool Equals(RatNum x)
+    {
+        RatNum a = this.Reduce();
+        RatNum b = x.Reduce();
+        return a.Numerator == b.Numerator && a.Denominator == b.Denominator;
     }
     // Перегрузка оператора "+". Сложение двух дробей.
     public static RatNum operator +(RatNum a, RatNum b)
@@ -184,15 +199,37 @@ public class RatNum
     {
         return a - 1;
     }
-    // Проверяется не содержимое, а ссылку, исправить
-    //public static bool operator ==(RatNum a, RatNum b)
-    //{
-    //    return a.Equals(b);
-    //}
-    //public static bool operator !=(RatNum a, RatNum b)
-    //{
-    //    return !(a == b);
-    //}
+
+    // Перегрузка оператора "==". Сравнение дробей с помощью созданого метода.
+    public static bool operator ==(RatNum a, RatNum b)
+    {
+        return a.Equals(b);
+    }
+    // Перегрузка оператора "==". Дробь и число.
+    public static bool operator ==(RatNum a, int b)
+    {
+        return a == new RatNum(b);
+    }
+    // Перегрузка оператора "==". Число и дробь.
+    public static bool operator ==(int a, RatNum b)
+    {
+        return new RatNum(a) == b;
+    }
+    // Перегрузка оператора "!=". Дроби.
+    public static bool operator !=(RatNum a, RatNum b)
+    {
+        return !(a == b);
+    }
+    // Перегрузка оператора "!=". Дробь и число.
+    public static bool operator !=(RatNum a, int b)
+    {
+        return a != new RatNum(b);
+    }
+    // Перегрузка оператора "!=". Число и дробь.
+    public static bool operator !=(int a, RatNum b)
+    {
+        return new RatNum(a) != b;
+    }
     public override string ToString()
     {
         return $"{Numerator}/{Denominator}";

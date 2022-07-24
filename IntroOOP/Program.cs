@@ -8,7 +8,8 @@ Header.HwHeader("ООП", 5, "Алимов Филипп");
 //дроби. Определить операторы преобразования типов между типом дробь, float, int.
 //Определить операторы *, /, %.
 
-RatNum rat1 = new(5, 6);
+RatNum rat1 = new(4, 6);
+RatNum rat6 = new RatNum(5, 6);
 
 //var rat2 = new RatNum(4, 9);
 //var rat3 = new RatNum(1, 2);
@@ -20,5 +21,7 @@ RatNum rat1 = new(5, 6);
 //Console.WriteLine(rat1 - rat3);
 //Console.WriteLine(rat1 * rat2);
 //Console.WriteLine(++rat1);
+Console.WriteLine(rat1 == rat6);
+Console.WriteLine(rat1 != rat6);
 
 Console.ReadLine();
