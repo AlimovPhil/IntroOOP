@@ -1,6 +1,6 @@
 ﻿namespace IntroOOP;
 
-//Определить операторы преобразования типов между типом дробь, float, int.
+
 public class RatNum
 {
     private int _Numerator;     // Числитель
@@ -320,6 +320,7 @@ public class RatNum
     {
         return new RatNum(a) <= b;
     }
+    // Перегрузка оператора "%" для дробей.
     public static RatNum operator %(RatNum a, RatNum b)
     {
         RatNum x;
@@ -331,8 +332,46 @@ public class RatNum
         }
         return new RatNum(x.Numerator, x.Denominator);
     }
+    // Перегрузка оператора "%" для дроби и числа.
+    public static RatNum operator %(RatNum a, int b)
+    {
+        return a % new RatNum(b);
+    }
+    // Перегрузка оператора "%" для числа и дроби.
+    public static RatNum operator %(int a, RatNum b)
+    {
+        return new RatNum(a) % b;
+    }
+    // Явное преобразование в тип float
+    public static explicit operator float(RatNum a)
+    {
+        return (float)a.Numerator / (float)a.Denominator;
+    }
+    // Явное преобразование в тип int
+    public static explicit operator int(RatNum a)
+    {
+        return (int)a.Numerator / (int)a.Denominator;
+    }
+    // Явное преобразование в тип double
+    public static explicit operator double(RatNum a)
+    {
+        return (double)a.Numerator / (double)a.Denominator;
+    }
     public override string ToString()
     {
-        return $"{Numerator}/{Denominator}";
+        if (this.Numerator == 0)
+        {
+            return "0";
+        }
+        string result = "";
+        if (this.Numerator == this.Denominator)
+        {
+            return result + "1";
+        }
+        if (this.Denominator == 1)
+        {
+            return result + this.Numerator;
+        }
+        return result + this.Numerator + "/" + this.Denominator;
     }
 }

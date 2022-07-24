@@ -16,6 +16,9 @@ RatNum rat6 = new RatNum(5, 6);
 //Console.WriteLine(rat1 - rat3);
 //Console.WriteLine(rat1 * rat2);
 //Console.WriteLine(++rat1);
-Console.WriteLine(rat1 % rat6);
+Console.WriteLine(rat1);
+Console.WriteLine((float)rat1);
+Console.WriteLine((int)rat1);
+Console.WriteLine((double)rat1);
 
 Console.ReadLine();
