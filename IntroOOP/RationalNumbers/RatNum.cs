@@ -1,4 +1,4 @@
-﻿namespace IntroOOP;
+﻿namespace IntroOOP.RationalNumbers;
 
 
 public class RatNum
@@ -81,7 +81,7 @@ public class RatNum
     public RatNum Reduce()
     {
         RatNum result = this;
-        int greatestCommonDivisor = GetCommonDivisor(this.Numerator, this.Denominator);
+        int greatestCommonDivisor = GetCommonDivisor(Numerator, Denominator);
         result.Numerator /= greatestCommonDivisor;
         result.Denominator /= greatestCommonDivisor;
         return result;
@@ -124,12 +124,12 @@ public class RatNum
     // Обратная дробь
     private RatNum ReverseNum()
     {
-        return new RatNum(this.Denominator, this.Numerator);
+        return new RatNum(Denominator, Numerator);
     }
     // Метод сравнения.
     public bool Equals(RatNum x)
     {
-        RatNum a = this.Reduce();
+        RatNum a = Reduce();
         RatNum b = x.Reduce();
         return a.Numerator == b.Numerator && a.Denominator == b.Denominator;
     }
@@ -139,11 +139,11 @@ public class RatNum
     // -1, если А меньше В
     private int CompareTo(RatNum x)
     {
-        if (this.Equals(x))
+        if (Equals(x))
         {
             return 0;
         }
-        RatNum a = this.Reduce();
+        RatNum a = Reduce();
         RatNum b = x.Reduce();
         if (a.Numerator / a.Denominator > b.Numerator / b.Denominator)
             return 1;
@@ -337,33 +337,33 @@ public class RatNum
     // Явное преобразование в тип float
     public static explicit operator float(RatNum a)
     {
-        return (float)a.Numerator / (float)a.Denominator;
+        return a.Numerator / (float)a.Denominator;
     }
     // Явное преобразование в тип int
     public static explicit operator int(RatNum a)
     {
-        return (int)a.Numerator / (int)a.Denominator;
+        return a.Numerator / a.Denominator;
     }
     // Явное преобразование в тип double
     public static explicit operator double(RatNum a)
     {
-        return (double)a.Numerator / (double)a.Denominator;
+        return a.Numerator / (double)a.Denominator;
     }
     public override string ToString()
     {
-        if (this.Numerator == 0)
+        if (Numerator == 0)
         {
             return "0";
         }
         string result = "";
-        if (this.Numerator == this.Denominator)
+        if (Numerator == Denominator)
         {
             return result + "1";
         }
-        if (this.Denominator == 1)
+        if (Denominator == 1)
         {
-            return result + this.Numerator;
+            return result + Numerator;
         }
-        return result + this.Numerator + "/" + this.Denominator;
+        return result + Numerator + "/" + Denominator;
     }
 }
