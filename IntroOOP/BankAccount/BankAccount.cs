@@ -110,8 +110,6 @@ public class BankAccount
         }
     }
 
-
-
     /// <summary>
     /// Перевод денег с одного счета на другой
     /// </summary>
@@ -146,4 +144,34 @@ public class BankAccount
     /// Метод печатает состояние
     /// </summary>
     public void GetInfo() { Console.WriteLine("Номер счета: {0}\nБаланс: {1:N} RUB\nТип: {2}\n", ID, Balance, Type); }
+
+
+    public static bool operator ==(BankAccount a, BankAccount b) => a.Equals(b);
+    public static bool operator !=(BankAccount a, BankAccount b) => !(a == b);
+
+    public override bool Equals(object? obj)
+    {
+        if (obj == null) return false;
+        if(obj.GetType() != typeof(BankAccount)) return false;
+
+        var other = (BankAccount)obj;
+
+        return Balance == other.Balance && Type == other.Type;
+    }
+
+    public override int GetHashCode()
+    {
+        //return HashCode.Combine(Balance, Type);
+        var hash = 397;
+
+        hash = (hash * 397) ^ Balance.GetHashCode();
+        hash = (hash * 397) ^ Type.GetHashCode();
+
+        return hash;
+    }
+
+    public override string ToString()
+    {
+        return "Счет № " + ID + " Баланс: "+ Balance + " RUB " + " Тип: " + Type;
+    }
 }
