@@ -1,4 +1,4 @@
-﻿namespace IntroOOP;
+﻿namespace IntroOOP.BuildingClass;
 
 public class Building
 {
@@ -10,7 +10,7 @@ public class Building
     private int _EntranceQty;         // Количество подъездов
     private static int lastBuildingNumber; // Переменная для генерации номера здания
     #endregion
-    
+
 
     public int BuildingNumber
     {
