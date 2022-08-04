@@ -14,14 +14,19 @@ using IntroOOP.Coder;
 
 Header.HwHeader("ООП", 7, "Алимов Филипп");
 
-ACoder coder = new ();
+ACoder aCoder = new ();
+BCoder bCoder = new ();
 
 string input = "АБВГД ABCDE Зашифруй меня скорее!";
-string output = coder.Encode(input);
+string output = aCoder.Encode(input);
 
-Console.WriteLine(input);
+Console.WriteLine($"Оригинальная строка: {input}\n");
+Console.WriteLine($"Шифрование: {output}\n");
+Console.WriteLine($"Дешифровка: {aCoder.Decode(output)}\n");
+
+int key = 5;
+output = bCoder.Encode(input, key);
 Console.WriteLine(output);
-Console.WriteLine(coder.Decode(output)); // Пример работы дешифратора.
-
+Console.WriteLine(bCoder.Decode(output, key));
 
 Console.ReadLine();
