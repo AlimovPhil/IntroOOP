@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace IntroOOP.Coder;
 
-namespace IntroOOP.Coder
+public class ACoder: Coder, ICoder
 {
-    public class ACoder
+    public string Decode(string str)
     {
+        return MakeCoder(str, 1);
+    }
 
+    public string Encode(string str)
+    {
+        return MakeCoder(str, -1);
     }
 }

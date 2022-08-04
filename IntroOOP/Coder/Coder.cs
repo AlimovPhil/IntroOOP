@@ -1,19 +1,32 @@
 ﻿namespace IntroOOP.Coder;
 
-//Определить интерфейс IСoder, который полагает методы поддержки шифрования
-//строк.В интерфейсе объявляются два метода Encode() и Decode(),
-//используемые для шифрования и дешифрования строк. Создать класс ACoder,
-//реализующий интерфейс ICoder.Класс шифрует строку посредством сдвига
-//каждого символа на одну «алфавитную» позицию выше. (В результате такого
-//сдвига буква А становится буквой Б). Создать класс BCoder, реализующий
-//интерфейс ICoder.Класс шифрует строку, выполняя замену каждой буквы,
-//стоящей в алфавите на i-й позиции, на букву того же регистра, расположенную в
-//алфавите на i-й позиции с конца алфавита. (Например, буква В заменяется на
-//букву Э.Написать программу, демонстрирующую функционирование классов).
+
 public interface ICoder
 {
     string Encode(string str);
     string Decode(string str);
 }
-
-
+public class Coder
+{
+    protected string MakeCoder(string str, int key)
+    {
+        char[] code = new char[str.Length];
+        for (int i = 0; i < code.Length; i++)
+        {
+            char c = str[i];
+            if (!Char.IsLetter(c))
+            {
+                code[i] = c;
+            }
+            else if (Char.IsLower(c))
+            {
+                code[i] = (char)(c - key);
+            }
+            else
+            {
+                code[i] = (char)(c - key);
+            }
+        }
+        return new string(code);
+    }
+}
