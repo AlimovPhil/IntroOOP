@@ -1,25 +1,32 @@
 ﻿using IntroOOP;
-using IntroOOP.BankAccount;
+using IntroOOP.Coder;
 
-Header.HwHeader("ООП", 6, "Алимов Филипп");
+/*Определить интерфейс IСoder, который полагает методы поддержки шифрования
+строк.В интерфейсе объявляются два метода Encode() и Decode(),
+используемые для шифрования и дешифрования строк. Создать класс ACoder,
+реализующий интерфейс ICoder.Класс шифрует строку посредством сдвига
+каждого символа на одну «алфавитную» позицию выше. (В результате такого
+сдвига буква А становится буквой Б). Создать класс BCoder, реализующий
+интерфейс ICoder.Класс шифрует строку, выполняя замену каждой буквы,
+стоящей в алфавите на i-й позиции, на букву того же регистра, расположенную в
+алфавите на i-й позиции с конца алфавита. (Например, буква В заменяется на букву Э).
+Написать программу, демонстрирующую функционирование классов).*/
 
-BankAccount test = new (77777, BankAccount.AccType.Credit);
-BankAccount test1 = new (77777, BankAccount.AccType.Credit);
-BankAccount test2 = new (6666, BankAccount.AccType.Deposit);
+Header.HwHeader("ООП", 7, "Алимов Филипп");
 
-var is_accounts_equal = test.Equals(test1); // true
+ACoder aCoder = new ();
+BCoder bCoder = new ();
 
-var is_test_equals_test1 = test == test1; // true
-var is_test_not_equals_test1 = test != test1; // false
+string input = "АБВГД ABCDE Зашифруй меня скорее!";
+string output = aCoder.Encode(input);
 
-var is_test_equals_test2 = test == test2; //false
-var is_test_not_equals_test2 = test != test2; //true
+Console.WriteLine($"Оригинальная строка: {input}\n");
+Console.WriteLine($"Шифрование: {output}\n");
+Console.WriteLine($"Дешифровка: {aCoder.Decode(output)}\n");
 
-Console.WriteLine(test.GetHashCode()); // 85418522
-Console.WriteLine(test1.GetHashCode()); // 85418522
-Console.WriteLine(test2.GetHashCode()); // 64804292
-
-Console.WriteLine($"{test}\n{test1}\n{test2}");
-
+int key = 5;
+output = bCoder.Encode(input, key);
+Console.WriteLine(output);
+Console.WriteLine(bCoder.Decode(output, key));
 
 Console.ReadLine();
