@@ -129,6 +129,7 @@ public class RatNum
     // Метод сравнения.
     public bool Equals(RatNum x)
     {
+        if (x is null) return false;
         RatNum a = this.Reduce();
         RatNum b = x.Reduce();
         return a.Numerator == b.Numerator && a.Denominator == b.Denominator;
@@ -227,7 +228,7 @@ public class RatNum
     // Перегрузка оператора "==". Сравнение дробей с помощью созданого метода.
     public static bool operator ==(RatNum a, RatNum b)
     {
-        return a.Equals(b);
+        return Equals(a,b);
     }
     // Перегрузка оператора "==". Дробь и число.
     public static bool operator ==(RatNum a, int b)
@@ -358,12 +359,12 @@ public class RatNum
         string result = "";
         if (this.Numerator == this.Denominator)
         {
-            return result + "1";
+            return "1";
         }
         if (this.Denominator == 1)
         {
             return result + this.Numerator;
         }
-        return result + this.Numerator + "/" + this.Denominator;
+        return $"{result + Numerator}/{Denominator}";
     }
 }
