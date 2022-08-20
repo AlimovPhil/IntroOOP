@@ -26,7 +26,7 @@ namespace IntroOOP.Coder
         }
         public string Decode(string str)
         {
-            return null;
+            throw new NotSupportedException("Декодирование не поддерживается");
         }
     }
 }
