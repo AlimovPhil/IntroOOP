@@ -1,6 +1,5 @@
 ﻿namespace IntroOOP.RationalNumbers;
 
-
 public class RatNum
 {
     private int _Numerator;     // Числитель
@@ -81,7 +80,7 @@ public class RatNum
     public RatNum Reduce()
     {
         RatNum result = this;
-        int greatestCommonDivisor = GetCommonDivisor(Numerator, Denominator);
+        int greatestCommonDivisor = GetCommonDivisor(this.Numerator, this.Denominator);
         result.Numerator /= greatestCommonDivisor;
         result.Denominator /= greatestCommonDivisor;
         return result;
@@ -124,12 +123,13 @@ public class RatNum
     // Обратная дробь
     private RatNum ReverseNum()
     {
-        return new RatNum(Denominator, Numerator);
+        return new RatNum(this.Denominator, this.Numerator);
     }
     // Метод сравнения.
     public bool Equals(RatNum x)
     {
-        RatNum a = Reduce();
+        if (x is null) return false;
+        RatNum a = this.Reduce();
         RatNum b = x.Reduce();
         return a.Numerator == b.Numerator && a.Denominator == b.Denominator;
     }
@@ -139,11 +139,11 @@ public class RatNum
     // -1, если А меньше В
     private int CompareTo(RatNum x)
     {
-        if (Equals(x))
+        if (this.Equals(x))
         {
             return 0;
         }
-        RatNum a = Reduce();
+        RatNum a = this.Reduce();
         RatNum b = x.Reduce();
         if (a.Numerator / a.Denominator > b.Numerator / b.Denominator)
             return 1;
@@ -227,7 +227,7 @@ public class RatNum
     // Перегрузка оператора "==". Сравнение дробей с помощью созданого метода.
     public static bool operator ==(RatNum a, RatNum b)
     {
-        return a.Equals(b);
+        return Equals(a, b);
     }
     // Перегрузка оператора "==". Дробь и число.
     public static bool operator ==(RatNum a, int b)
@@ -337,33 +337,33 @@ public class RatNum
     // Явное преобразование в тип float
     public static explicit operator float(RatNum a)
     {
-        return a.Numerator / (float)a.Denominator;
+        return (float)a.Numerator / (float)a.Denominator;
     }
     // Явное преобразование в тип int
     public static explicit operator int(RatNum a)
     {
-        return a.Numerator / a.Denominator;
+        return (int)a.Numerator / (int)a.Denominator;
     }
     // Явное преобразование в тип double
     public static explicit operator double(RatNum a)
     {
-        return a.Numerator / (double)a.Denominator;
+        return (double)a.Numerator / (double)a.Denominator;
     }
     public override string ToString()
     {
-        if (Numerator == 0)
+        if (this.Numerator == 0)
         {
             return "0";
         }
         string result = "";
-        if (Numerator == Denominator)
+        if (this.Numerator == this.Denominator)
         {
-            return result + "1";
+            return "1";
         }
-        if (Denominator == 1)
+        if (this.Denominator == 1)
         {
-            return result + Numerator;
+            return result + this.Numerator;
         }
-        return result + Numerator + "/" + Denominator;
+        return $"{result + Numerator}/{Denominator}";
     }
 }
